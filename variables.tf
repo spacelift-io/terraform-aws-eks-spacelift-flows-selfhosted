@@ -60,7 +60,7 @@ variable "anthropic_api_key" {
 variable "email_dev_enabled" {
   description = "Enable development email mode"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "organization_name" {
