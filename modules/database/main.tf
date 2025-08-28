@@ -39,7 +39,7 @@ resource "aws_rds_cluster_instance" "flows" {
 # Store database credentials in Secrets Manager (optional, for better security)
 resource "aws_secretsmanager_secret" "db_credentials" {
   name                    = "flows-db-credentials"
-  recovery_window_in_days = 7
+  recovery_window_in_days = 0
   kms_key_id              = var.kms_key_id
 }
 
