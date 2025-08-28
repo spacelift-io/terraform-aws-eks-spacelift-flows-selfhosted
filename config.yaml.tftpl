@@ -1,0 +1,49 @@
+appDomain: "${app_domain}"
+databaseUrl: "${database_url}"
+%{ if opentelemetry_collector_endpoint != "" ~}
+openTelemetry:
+  collectorEndpoint: "${opentelemetry_collector_endpoint}"
+%{ endif ~}
+%{ if anthropic_api_key != "" ~}
+ai:
+  anthropic:
+    apiKey: "${anthropic_api_key}"
+%{ endif ~}
+objectStorage:
+  s3:
+    bucket: "${s3_bucket_name}"
+    accessKeyId: "${s3_access_key_id}"
+    secretAccessKey: "${s3_secret_access_key}"
+    endpoint: "${s3_endpoint}"
+    region: "${s3_region}"
+    insecure: ${s3_insecure}
+email:
+  dev:
+    enabled: ${email_dev_enabled}
+%{ if smtp_host != "" ~}
+  smtp:
+    host: "${smtp_host}"
+    port: ${smtp_port}
+    username: "${smtp_username}"
+    password: "${smtp_password}"
+    fromAddress: "${smtp_from_address}"
+    fromName: "${smtp_from_name}"
+    encryption: "${smtp_encryption}"
+%{ endif ~}
+defaultAgentPool:
+  id: "${default_agent_pool_id}"
+  token: "${default_agent_pool_token}"
+selfHosted:
+  organizationName: "${organization_name}"
+  adminEmail: "${admin_email}"
+  licenseToken: "${license_token}"
+server:
+  listeners:
+    http:
+      port: ${server_port}
+  public:
+    listeners:
+      - listenerId: http
+  internal:
+    listeners:
+      - listenerId: http
