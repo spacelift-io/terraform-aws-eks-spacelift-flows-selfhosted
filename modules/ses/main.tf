@@ -48,6 +48,8 @@ resource "aws_iam_access_key" "ses_user" {
 # Email storage bucket (optional)
 resource "aws_s3_bucket" "emails" {
   bucket = "flows-emails-${random_id.ses_suffix.hex}"
+
+  force_destroy = !var.s3_bucket_retain_on_destroy
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "emails" {
