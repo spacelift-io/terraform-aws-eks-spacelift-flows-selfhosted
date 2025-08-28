@@ -58,7 +58,7 @@ variable "anthropic_api_key" {
 }
 
 variable "email_dev_enabled" {
-  description = "Enable development email mode"
+  description = "Enable development email mode. The magic link for login will be printed to the server logs."
   type        = bool
   default     = false
 }
