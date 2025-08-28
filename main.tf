@@ -58,8 +58,9 @@ module "ses" {
   count  = var.enable_ses ? 1 : 0
   source = "./modules/ses"
 
-  domain      = var.app_domain
-  kms_key_arn = module.kms.key_arn
+  domain                      = var.app_domain
+  kms_key_arn                 = module.kms.key_arn
+  s3_bucket_retain_on_destroy = var.s3_retain_on_destroy
 }
 
 # Request ACM certificate (only if cert_arn is not provided)
