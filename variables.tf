@@ -8,6 +8,7 @@ variable "aws_region" {
 variable "license_token" {
   description = "The JWT token for using Spacelift flows. Only required for generating the kubernetes_secrets output."
   type        = string
+  sensitive   = true
 }
 
 variable "app_domain" {
@@ -112,6 +113,7 @@ variable "smtp_from_address" {
 
 variable "database_connection_url" {
   type        = string
+  sensitive   = true
   default     = ""
   description = "Provide this value, if enable_database is false and you want to configure configuration flows secret from the module."
 }
