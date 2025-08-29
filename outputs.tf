@@ -77,3 +77,13 @@ output "ingress_manifest" {
     certificate_arn   = var.cert_arn != null ? var.cert_arn : aws_acm_certificate.flows[0].arn
   })
 }
+
+output "shell" {
+  description = "Environment variables for installation tasks. This output is just included as a convenience for use as part of the EKS getting started guide."
+  value = templatefile("${path.module}/env.tftpl", {
+    env : {
+      # EKS
+      EKS_CLUSTER_NAME = local.cluster_name
+    },
+  })
+}
