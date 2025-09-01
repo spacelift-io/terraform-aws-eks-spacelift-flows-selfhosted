@@ -24,7 +24,7 @@ module "spacelift_flows" {
   organization_name = var.organization_name
   admin_email       = var.admin_email
   aws_region        = var.aws_region
-  license_token = var.license_token
+  license_token     = var.license_token
 
   # Optional variables
   k8s_namespace               = var.k8s_namespace
