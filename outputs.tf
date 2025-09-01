@@ -98,8 +98,8 @@ output "eks_cluster_endpoint" {
   description = "Endpoint of the EKS cluster."
 }
 
-output "cluster_certificate_authority_data" {
-  description = "Base64 encoded certificate data required to communicate with the cluster"
+output "eks_cluster_certificate_authority_data" {
+  description = "Base64 encoded certificate data required to communicate with the eks cluster"
   value       = var.eks_cluster_name ? module.eks.cluster_certificate_authority_data : ""
 }
 
