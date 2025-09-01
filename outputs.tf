@@ -87,3 +87,19 @@ output "shell" {
     },
   })
 }
+
+output "eks_cluster_name" {
+  value       = local.cluster_name
+  description = "Name of the EKS cluster."
+}
+
+output "eks_cluster_endpoint" {
+  value       = var.eks_cluster_name ? module.eks.cluster_endpoint : ""
+  description = "Endpoint of the EKS cluster."
+}
+
+output "cluster_certificate_authority_data" {
+  description = "Base64 encoded certificate data required to communicate with the cluster"
+  value       = var.eks_cluster_name ? module.eks.cluster_certificate_authority_data : ""
+}
+
