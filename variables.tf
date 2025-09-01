@@ -26,9 +26,9 @@ variable "s3_retain_on_destroy" {
 }
 
 variable "rds_delete_protection_enabled" {
-  type    = bool
+  type        = bool
   description = "Whether to enable the rds delete protection."
-  default = true
+  default     = true
 }
 
 variable "rds_cluster_configuration" {
