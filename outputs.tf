@@ -94,12 +94,12 @@ output "eks_cluster_name" {
 }
 
 output "eks_cluster_endpoint" {
-  value       = var.enable_eks_cluster ? module.eks.cluster_endpoint : ""
+  value       = var.enable_eks_cluster ? module.eks[0].cluster_endpoint : ""
   description = "Endpoint of the EKS cluster."
 }
 
 output "eks_cluster_certificate_authority_data" {
   description = "Base64 encoded certificate data required to communicate with the eks cluster"
-  value       = var.enable_eks_cluster ? module.eks.cluster_certificate_authority_data : ""
+  value       = var.enable_eks_cluster ? module.eks[0].cluster_certificate_authority_data : ""
 }
 
