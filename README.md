@@ -5,7 +5,7 @@ A comprehensive Terraform module for deploying Spacelift Flows on AWS using Amaz
 ## Features
 
 - **Complete Infrastructure Setup**: VPC, EKS cluster, RDS database, S3 buckets, and all necessary AWS resources
-- **Flexible Configuration**: Use existing infrastructure or create new resources as needed
+- **Flexible Configuration**: Use existing Spacelift Self-Hosted infrastructure or create new resources as needed
 - **Security Best Practices**: KMS encryption, secure networking, IAM roles with least privilege
 - **Multiple SMTP Options**: Support for AWS SES or custom SMTP servers
 - **SSL/TLS Support**: Automatic ACM certificate creation or use existing certificates
@@ -91,7 +91,7 @@ Use existing VPC and networking infrastructure.
 Connect to an existing PostgreSQL database.
 
 ### [Existing Infrastructure](examples/with_existing_infra/)
-Deploy using entirely existing AWS infrastructure (VPC, EKS, and database).
+Deploy using entirely existing Spacelift Self-Hosted AWS infrastructure (VPC, EKS, and database).
 
 ## Deployment Steps
 
