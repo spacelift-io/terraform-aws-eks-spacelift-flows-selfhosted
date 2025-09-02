@@ -43,18 +43,9 @@ eks_cluster_name   = "my-existing-cluster"
 enable_vpc = false
 vpc_id     = "vpc-1234567890abcdef0"
 
-private_subnet_ids = [
-  "subnet-1234567890abcdef0",
-  "subnet-1234567890abcdef1"
-]
-
 public_subnet_ids = [
   "subnet-abcdef0123456789",
   "subnet-abcdef0123456790"
-]
-
-database_security_group_ids = [
-  "sg-1234567890abcdef0"
 ]
 
 enable_database         = false
