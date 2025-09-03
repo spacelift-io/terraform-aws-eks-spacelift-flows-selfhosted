@@ -1,6 +1,6 @@
 locals {
   unique_suffix = lower(substr(random_uuid.suffix.id, 0, 5))
-  cluster_name  = coalesce(var.eks_cluster_name, "spacelift-flows-cluster-${local.unique_suffix}")
+  cluster_name  = coalesce(var.eks_cluster_name, "spacelift-flows-${local.unique_suffix}")
 
   vpc_id                      = var.enable_vpc ? module.network[0].vpc_id : var.vpc_id
   private_subnet_ids          = var.enable_vpc ? module.network[0].private_subnet_ids : var.private_subnet_ids
