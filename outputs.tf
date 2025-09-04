@@ -18,6 +18,7 @@ output "config_secret_manifest" {
         app_domain                       = var.app_domain
         database_url                     = var.enable_database ? module.database[0].connection_url : var.database_connection_url
         opentelemetry_collector_endpoint = var.opentelemetry_collector_endpoint
+        opentelemetry_environment        = var.opentelemetry_environment
         anthropic_api_key                = var.anthropic_api_key
         s3_bucket_name                   = module.buckets.storage_bucket_name
         s3_access_key_id                 = module.buckets.s3_access_key_id
