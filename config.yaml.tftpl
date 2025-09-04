@@ -3,6 +3,7 @@ databaseUrl: "${database_url}"
 %{ if opentelemetry_collector_endpoint != "" ~}
 openTelemetry:
   collectorEndpoint: "${opentelemetry_collector_endpoint}"
+  environment: "${opentelemetry_environment}"
 %{ endif ~}
 %{ if anthropic_api_key != "" ~}
 ai:

@@ -51,6 +51,11 @@ variable "opentelemetry_collector_endpoint" {
   default     = ""
 }
 
+variable "opentelemetry_environment" {
+  description = "OpenTelemetry environment name"
+  type        = string
+}
+
 variable "anthropic_api_key" {
   description = "Anthropic API key for AI features"
   type        = string
