@@ -39,12 +39,5 @@ selfHosted:
   adminEmail: "${admin_email}"
   licenseToken: "${license_token}"
 server:
-  listeners:
-    http:
-      port: ${server_port}
-  public:
-    listeners:
-      - listenerId: http
-  internal:
-    listeners:
-      - listenerId: http
+  publicPort: ${server_port}
+  internalPort: ${server_port}
