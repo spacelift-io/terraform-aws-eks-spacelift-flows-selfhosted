@@ -13,7 +13,7 @@ resource "aws_db_subnet_group" "flows" {
 resource "aws_rds_cluster" "flows" {
   cluster_identifier              = "flows-cluster"
   engine                          = "aurora-postgresql"
-  engine_version                  = "16.6"
+  engine_version                  = "16.8"
   database_name                   = "flows"
   master_username                 = "flows"
   master_password                 = random_password.db_password.result
