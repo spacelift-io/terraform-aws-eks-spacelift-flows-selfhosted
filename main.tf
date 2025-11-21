@@ -69,11 +69,11 @@ resource "aws_acm_certificate" "flows" {
 
   domain_name = var.app_domain
 
-  subject_alternative_names = [
+  subject_alternative_names = concat([
     "*.endpoints.${var.app_domain}",
     "oauth.${var.app_domain}",
     "mcp.${var.app_domain}",
-  ]
+  ], var.expose_gateway ? ["gateway.${var.app_domain}"] : [])
   validation_method = "DNS"
 }
 
