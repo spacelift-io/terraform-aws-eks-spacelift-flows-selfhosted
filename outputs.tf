@@ -118,10 +118,10 @@ output "agent_pool_id" {
 
 output "vpc_id" {
   description = "The ID of the VPC"
-  value       = module.network.vpc_id
+  value       = var.enable_vpc ? module.network[0].vpc_id : ""
 }
 
 output "vpc_private_subnet_ids" {
   description = "List of IDs of private subnets in the VPC"
-  value       = module.network.private_subnet_ids
+  value       = var.enable_vpc ? module.network[0].private_subnet_ids : []
 }
