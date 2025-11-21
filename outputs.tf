@@ -104,3 +104,24 @@ output "eks_cluster_certificate_authority_data" {
   value       = var.enable_eks_cluster ? module.eks[0].cluster_certificate_authority_data : ""
 }
 
+
+output "agent_pool_token" {
+  description = "The token for the default agent pool"
+  value       = random_password.default_agent_pool_token.result
+}
+
+output "agent_pool_id" {
+  description = "The ID of the default agent pool"
+  value       = random_uuid.default_agent_pool_id.result
+}
+
+
+output "vpc_id" {
+  description = "The ID of the VPC"
+  value       = var.enable_vpc ? module.network[0].vpc_id : ""
+}
+
+output "vpc_private_subnet_ids" {
+  description = "List of IDs of private subnets in the VPC"
+  value       = var.enable_vpc ? module.network[0].private_subnet_ids : []
+}
