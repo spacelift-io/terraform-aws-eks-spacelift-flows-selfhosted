@@ -207,7 +207,7 @@ variable "enable_ses" {
 }
 
 variable "expose_gateway" {
-  description = "Whether to expose the gateway subdomain. If true, adds gateway.${var.app_domain} to the ACM certificate."
+  description = "Whether to expose the gateway subdomain. If true, adds gateway.app_domain to the ACM certificate."
   type        = bool
   default     = false
 }
