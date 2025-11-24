@@ -31,6 +31,7 @@ module "eks" {
       # This is the important bit: allow from the same SG
       self = true
     }
+  }
 
   compute_config          = var.eks_compute_config
   eks_managed_node_groups = var.eks_managed_node_groups
