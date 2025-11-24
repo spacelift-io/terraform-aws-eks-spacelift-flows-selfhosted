@@ -216,7 +216,7 @@ variable "eks_compute_config" {
   description = "EKS compute configuration for Auto mode. Set to null to disable Auto mode."
   type = object({
     enabled    = bool
-    node_pools = list(string)
+    node_pools = optional(list(string))
   })
   default = null
 }
