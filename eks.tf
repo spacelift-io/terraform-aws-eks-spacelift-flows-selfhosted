@@ -20,11 +20,8 @@ module "eks" {
   vpc_id     = local.vpc_id
   subnet_ids = local.private_subnet_ids
 
-  # Enable EKS Auto mode using a general purpose node pool
-  compute_config = {
-    enabled    = true
-    node_pools = ["general-purpose"]
-  }
+  compute_config          = var.eks_compute_config
+  eks_managed_node_groups = var.eks_managed_node_groups
 
   tags = {
     Name = "Spacelift cluster ${local.unique_suffix}"

@@ -211,3 +211,30 @@ variable "expose_gateway" {
   type        = bool
   default     = false
 }
+
+variable "eks_compute_config" {
+  description = "EKS compute configuration for Auto mode. Set to null to disable Auto mode."
+  type = object({
+    enabled    = bool
+    node_pools = list(string)
+  })
+  default = null
+}
+
+variable "eks_managed_node_groups" {
+  description = "Map of EKS managed node group configurations"
+  type = map(object({
+    min_size       = number
+    max_size       = number
+    desired_size   = number
+    instance_types = list(string)
+  }))
+  default = {
+    general-purpose = {
+      min_size       = 4
+      max_size       = 4
+      desired_size   = 4
+      instance_types = ["c7i.xlarge"]
+    }
+  }
+}
