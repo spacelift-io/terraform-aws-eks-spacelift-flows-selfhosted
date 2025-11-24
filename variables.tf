@@ -238,3 +238,18 @@ variable "eks_managed_node_groups" {
     }
   }
 }
+
+variable "eks_addons" {
+  description = "Map of EKS cluster addon configurations"
+  type        = any
+  default = {
+    coredns = {}
+    eks-pod-identity-agent = {
+      before_compute = true
+    }
+    kube-proxy = {}
+    vpc-cni = {
+      before_compute = true
+    }
+  }
+}
