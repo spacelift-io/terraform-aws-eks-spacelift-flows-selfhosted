@@ -20,10 +20,9 @@ module "eks" {
   vpc_id     = local.vpc_id
   subnet_ids = local.private_subnet_ids
 
-  compute_config = {
-    enabled    = true
-    node_pools = ["general-purpose"]
-  }
+  compute_config          = var.eks_compute_config
+  eks_managed_node_groups = var.eks_managed_node_groups
+  addons                  = var.eks_addons
 
   tags = {
     Name = "Spacelift cluster ${local.unique_suffix}"
@@ -40,7 +39,7 @@ resource "aws_vpc_security_group_ingress_rule" "cluster_database_ingress_rule" {
   from_port                    = 5432
   to_port                      = 5432
   ip_protocol                  = "tcp"
-  referenced_security_group_id = module.eks[0].cluster_primary_security_group_id
+  referenced_security_group_id = var.eks_compute_config != null ? module.eks[0].cluster_primary_security_group_id : module.eks[0].node_security_group_id
 }
 
 
