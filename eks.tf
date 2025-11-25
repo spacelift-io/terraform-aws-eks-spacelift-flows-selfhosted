@@ -22,7 +22,6 @@ module "eks" {
 
   compute_config          = var.eks_compute_config
   eks_managed_node_groups = var.eks_managed_node_groups
-  addons                  = var.eks_addons
 
   tags = {
     Name = "Spacelift cluster ${local.unique_suffix}"
