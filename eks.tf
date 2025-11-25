@@ -20,6 +20,8 @@ module "eks" {
   vpc_id     = local.vpc_id
   subnet_ids = local.private_subnet_ids
 
+  node_security_group_additional_rules = var.eks_node_security_group_additional_rules
+
   compute_config          = var.eks_compute_config
   eks_managed_node_groups = var.eks_managed_node_groups
   addons                  = var.eks_addons
