@@ -253,3 +253,18 @@ variable "eks_addons" {
     }
   }
 }
+
+variable "eks_node_security_group_additional_rules" {
+  description = "Additional security group rules for EKS node security group"
+  type        = any
+  default = {
+    ssh_nodes_self = {
+      description = "Allow SSH between worker nodes"
+      protocol    = "tcp"
+      from_port   = 22
+      to_port     = 22
+      type        = "ingress"
+      self        = true
+    }
+  }
+}

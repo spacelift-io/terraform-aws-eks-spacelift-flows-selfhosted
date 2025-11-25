@@ -20,18 +20,7 @@ module "eks" {
   vpc_id     = local.vpc_id
   subnet_ids = local.private_subnet_ids
 
-  node_security_group_additional_rules = {
-    ssh_nodes_self = {
-      description = "Allow SSH between worker nodes"
-      protocol    = "tcp"
-      from_port   = 22
-      to_port     = 22
-      type        = "ingress"
-
-      # This is the important bit: allow from the same SG
-      self = true
-    }
-  }
+  node_security_group_additional_rules = var.eks_node_security_group_additional_rules
 
   compute_config          = var.eks_compute_config
   eks_managed_node_groups = var.eks_managed_node_groups
