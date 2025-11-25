@@ -40,7 +40,7 @@ resource "aws_vpc_security_group_ingress_rule" "cluster_database_ingress_rule" {
   from_port                    = 5432
   to_port                      = 5432
   ip_protocol                  = "tcp"
-  referenced_security_group_id = var.eks_compute_config != null ? module.eks[0].cluster_primary_security_group_id : module.eks[0].node_security_group_id
+  referenced_security_group_id = module.eks[0].cluster_primary_security_group_id
 }
 
 
