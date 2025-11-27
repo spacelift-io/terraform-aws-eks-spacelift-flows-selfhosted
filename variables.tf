@@ -176,7 +176,7 @@ variable "eks_cluster_name" {
 variable "eks_cluster_version" {
   type        = string
   description = "The Kubernetes version to run on the cluster."
-  default     = "1.33"
+  default     = "1.34"
 }
 
 variable "smtp_from_name" {
