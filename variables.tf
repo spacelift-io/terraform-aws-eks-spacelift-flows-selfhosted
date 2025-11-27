@@ -54,6 +54,7 @@ variable "opentelemetry_collector_endpoint" {
 variable "opentelemetry_environment" {
   description = "OpenTelemetry environment name"
   type        = string
+  default     = "spacelift-flows"
 }
 
 variable "anthropic_api_key" {
