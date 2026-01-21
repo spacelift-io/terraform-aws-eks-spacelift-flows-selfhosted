@@ -84,7 +84,7 @@ output "private_ingress_manifest" {
   description = "Complete Kubernetes ingress manifest with dynamic subnets and certificate ARN"
   value = templatefile("${path.module}/private_ingress.yaml.tftpl", {
     private_subnet_ids = local.private_subnet_ids
-    certificate_arn   = var.cert_arn != null ? var.cert_arn : aws_acm_certificate.flows[0].arn
+    certificate_arn    = var.cert_arn != null ? var.cert_arn : aws_acm_certificate.flows[0].arn
   })
 }
 

@@ -68,10 +68,10 @@ module "ecr" {
   count  = var.enable_ecr ? 1 : 0
   source = "./modules/ecr"
 
-  kms_key_arn             = module.kms.key_arn
-  image_tag_mutability    = var.ecr_image_tag_mutability
-  scan_on_push            = var.ecr_scan_on_push
-  force_delete            = var.ecr_force_delete
+  kms_key_arn          = module.kms.key_arn
+  image_tag_mutability = var.ecr_image_tag_mutability
+  scan_on_push         = var.ecr_scan_on_push
+  force_delete         = var.ecr_force_delete
 }
 
 # Request ACM certificate (only if cert_arn is not provided)
