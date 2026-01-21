@@ -1,0 +1,23 @@
+apiVersion: eks.amazonaws.com/v1
+kind: IngressClassParams
+metadata:
+  name: spacelift-flows
+spec:
+  scheme: internal
+  subnets:
+    ids: [%{ for subnet in private_subnet_ids ~}"${subnet}"%{ if subnet != private_subnet_ids[length(private_subnet_ids)-1] ~},%{ endif ~}%{ endfor ~}]
+  certificateARNs:
+    - "${certificate_arn}"
+
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: spacelift-flows
+spec:
+  # Configures the IngressClass to use EKS Auto Mode
+  controller: eks.amazonaws.com/alb
+  parameters:
+    apiGroup: eks.amazonaws.com
+    kind: IngressClassParams
+    name: spacelift-flows
