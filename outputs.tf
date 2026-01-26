@@ -40,6 +40,7 @@ output "config_secret_manifest" {
         admin_email                      = var.admin_email
         server_port                      = var.server_port
         license_token                    = var.license_token
+        additional_root_ca               = var.custom_ca_certificates
       }))
     }
   })
