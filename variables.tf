@@ -212,3 +212,27 @@ variable "expose_gateway" {
   type        = bool
   default     = false
 }
+
+variable "enable_ecr" {
+  description = "Enable ECR repository for Spacelift Flows images. If true, creates a private ECR repository."
+  type        = bool
+  default     = false
+}
+
+variable "ecr_image_tag_mutability" {
+  description = "The tag mutability setting for the ECR repository. Must be one of: MUTABLE or IMMUTABLE"
+  type        = string
+  default     = "MUTABLE"
+}
+
+variable "ecr_scan_on_push" {
+  description = "Indicates whether images are scanned after being pushed to the ECR repository"
+  type        = bool
+  default     = true
+}
+
+variable "ecr_force_delete" {
+  description = "If true, will delete the ECR repository even if it contains images"
+  type        = bool
+  default     = false
+}

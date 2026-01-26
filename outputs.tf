@@ -79,6 +79,15 @@ output "ingress_manifest" {
   })
 }
 
+# Ingress manifest for EKS Auto Mode internal ALB
+output "internal_ingress_manifest" {
+  description = "Complete Kubernetes ingress manifest with dynamic subnets and certificate ARN"
+  value = templatefile("${path.module}/internal_ingress.yaml.tftpl", {
+    private_subnet_ids = local.private_subnet_ids
+    certificate_arn    = var.cert_arn != null ? var.cert_arn : aws_acm_certificate.flows[0].arn
+  })
+}
+
 output "shell" {
   description = "Environment variables for installation tasks. This output is just included as a convenience for use as part of the EKS getting started guide."
   value = templatefile("${path.module}/env.tftpl", {
@@ -124,4 +133,34 @@ output "vpc_id" {
 output "vpc_private_subnet_ids" {
   description = "List of IDs of private subnets in the VPC"
   value       = var.enable_vpc ? module.network[0].private_subnet_ids : []
+}
+
+output "ecr_repository_url" {
+  description = "The URL of the ECR repository for Spacelift Flows images"
+  value       = var.enable_ecr ? module.ecr[0].repository_url : ""
+}
+
+output "ecr_repository_arn" {
+  description = "The ARN of the ECR repository for Flows images"
+  value       = var.enable_ecr ? module.ecr[0].repository_arn : ""
+}
+
+output "ecr_repository_name" {
+  description = "The name of the ECR repository for Flows images"
+  value       = var.enable_ecr ? module.ecr[0].repository_name : ""
+}
+
+output "ecr_agent_repository_url" {
+  description = "The URL of the ECR repository for Spacelift Flows Agent images"
+  value       = var.enable_ecr ? module.ecr[0].agent_repository_url : ""
+}
+
+output "ecr_agent_repository_arn" {
+  description = "The ARN of the ECR repository for Agent images"
+  value       = var.enable_ecr ? module.ecr[0].agent_repository_arn : ""
+}
+
+output "ecr_agent_repository_name" {
+  description = "The name of the ECR repository for Agent images"
+  value       = var.enable_ecr ? module.ecr[0].agent_repository_name : ""
 }
