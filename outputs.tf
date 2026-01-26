@@ -151,7 +151,7 @@ output "ecr_repository_name" {
 }
 
 output "ecr_agent_repository_url" {
-  description = "The URL of the ECR repository for Spacelift Agent images"
+  description = "The URL of the ECR repository for Spacelift Flows Agent images"
   value       = var.enable_ecr ? module.ecr[0].agent_repository_url : ""
 }
 

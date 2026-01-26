@@ -19,9 +19,9 @@ resource "aws_ecr_repository" "flows_images" {
   force_delete = var.force_delete
 }
 
-# ECR Repository for Spacelift Agent images
+# ECR Repository for Spacelift Flows Agent images
 resource "aws_ecr_repository" "agent_images" {
-  name                 = "spacelift-agent-${random_id.ecr_suffix.hex}"
+  name                 = "spacelift-flows-agent-${random_id.ecr_suffix.hex}"
   image_tag_mutability = var.image_tag_mutability
 
   encryption_configuration {
