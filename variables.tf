@@ -213,9 +213,32 @@ variable "expose_gateway" {
   default     = false
 }
 
-
 variable "custom_ca_certificates" {
   description = "Additional root CA certificates to add to the trust store for Flows backend HTTP clients. Use this to enable HTTPS connections to services with custom or self-signed certificates. Expected format: base64 encoded JSON object with structure {\"caCertificates\": [\"<base64-encoded-cert-1>\", \"<base64-encoded-cert-2>\"]}, where each certificate is base64 encoded PEM format."
   type        = string
   default     = ""
+}
+
+variable "enable_ecr" {
+  description = "Enable ECR repository for Spacelift Flows images. If true, creates a private ECR repository."
+  type        = bool
+  default     = false
+}
+
+variable "ecr_image_tag_mutability" {
+  description = "The tag mutability setting for the ECR repository. Must be one of: MUTABLE or IMMUTABLE"
+  type        = string
+  default     = "MUTABLE"
+}
+
+variable "ecr_scan_on_push" {
+  description = "Indicates whether images are scanned after being pushed to the ECR repository"
+  type        = bool
+  default     = true
+}
+
+variable "ecr_force_delete" {
+  description = "If true, will delete the ECR repository even if it contains images"
+  type        = bool
+  default     = false
 }
