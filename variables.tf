@@ -213,6 +213,12 @@ variable "expose_gateway" {
   default     = false
 }
 
+variable "custom_ca_certificates" {
+  description = "Additional root CA certificates to add to the trust store for Flows backend HTTP clients. Use this to enable HTTPS connections to services with custom or self-signed certificates. Expected format: base64 encoded JSON object with structure {\"caCertificates\": [\"<base64-encoded-cert-1>\", \"<base64-encoded-cert-2>\"]}, where each certificate is base64 encoded PEM format."
+  type        = string
+  default     = ""
+}
+
 variable "enable_ecr" {
   description = "Enable ECR repository for Spacelift Flows images. If true, creates a private ECR repository."
   type        = bool

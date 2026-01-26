@@ -41,3 +41,6 @@ selfHosted:
 server:
   publicPort: ${server_port}
   internalPort: ${server_port}
+%{ if additional_root_ca != "" ~}
+additionalRootCas: "${additional_root_ca}"
+%{ endif ~}
