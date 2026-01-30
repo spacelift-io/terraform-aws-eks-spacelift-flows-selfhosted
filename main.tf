@@ -5,7 +5,7 @@ locals {
   vpc_id                      = var.enable_vpc ? module.network[0].vpc_id : var.vpc_id
   private_subnet_ids          = var.enable_vpc ? module.network[0].private_subnet_ids : var.private_subnet_ids
   public_subnet_ids           = var.enable_vpc ? module.network[0].public_subnet_ids : var.public_subnet_ids
-  database_security_group_ids = var.enable_vpc ? [module.network[0].database_security_group_ids] : var.database_security_group_ids
+  database_security_group_ids = length(var.database_security_group_ids) > 0 ? var.database_security_group_ids : [aws_security_group.database[0].id]
 }
 
 # Fetch availability zones

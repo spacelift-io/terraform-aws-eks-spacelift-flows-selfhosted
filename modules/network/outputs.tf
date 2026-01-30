@@ -17,8 +17,3 @@ output "vpc_cidr_block" {
   description = "The CIDR block of the VPC"
   value       = module.vpc.vpc_cidr_block
 }
-
-output "database_security_group_ids" {
-  description = "Security group ID for the database"
-  value       = aws_security_group.database.id
-}
