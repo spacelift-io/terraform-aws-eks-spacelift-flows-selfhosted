@@ -80,6 +80,17 @@ variable "admin_email" {
   type        = string
 }
 
+variable "admin_password" {
+  description = "Admin password for self-hosted deployment. If not provided, a random 32-character password will be generated."
+  type        = string
+  default     = ""
+  sensitive   = true
+  validation {
+    condition     = var.admin_password == "" || length(var.admin_password) >= 32
+    error_message = "Admin password must be at least 32 characters"
+  }
+}
+
 variable "server_port" {
   description = "Server port for HTTP listener"
   type        = number

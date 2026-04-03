@@ -38,6 +38,7 @@ output "config_secret_manifest" {
         default_agent_pool_token         = random_password.default_agent_pool_token.result
         organization_name                = var.organization_name
         admin_email                      = var.admin_email
+        admin_password                   = local.admin_password
         server_port                      = var.server_port
         license_token                    = var.license_token
         additional_root_ca               = var.custom_ca_certificates
