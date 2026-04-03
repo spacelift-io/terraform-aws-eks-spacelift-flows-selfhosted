@@ -6,7 +6,6 @@ locals {
   private_subnet_ids          = var.enable_vpc ? module.network[0].private_subnet_ids : var.private_subnet_ids
   public_subnet_ids           = var.enable_vpc ? module.network[0].public_subnet_ids : var.public_subnet_ids
   database_security_group_ids = length(var.database_security_group_ids) > 0 ? var.database_security_group_ids : [aws_security_group.database[0].id]
-  admin_password              = coalesce(var.admin_password, random_password.admin_password.result)
 }
 
 # Fetch availability zones
@@ -99,10 +98,6 @@ resource "random_password" "default_agent_pool_token" {
   upper   = false
 }
 
-resource "random_password" "admin_password" {
-  length  = 32
-  special = true
-}
 
 
 data "aws_caller_identity" "current" {}

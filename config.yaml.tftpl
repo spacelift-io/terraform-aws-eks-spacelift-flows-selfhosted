@@ -37,7 +37,9 @@ defaultAgentPool:
 selfHosted:
   organizationName: "${organization_name}"
   adminEmail: "${admin_email}"
+%{ if admin_password != "" ~}
   adminPassword: "${admin_password}"
+%{ endif ~}
   licenseToken: "${license_token}"
 server:
   publicPort: ${server_port}

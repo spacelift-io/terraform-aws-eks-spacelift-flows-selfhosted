@@ -81,7 +81,7 @@ variable "admin_email" {
 }
 
 variable "admin_password" {
-  description = "Admin password for self-hosted deployment. If not provided, a random 32-character password will be generated."
+  description = "Admin password for self-hosted deployment. If not provided, the password will not be set in the configuration."
   type        = string
   default     = ""
   sensitive   = true
