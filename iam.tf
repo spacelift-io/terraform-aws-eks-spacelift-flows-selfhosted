@@ -84,7 +84,7 @@ resource "aws_iam_policy" "flows_ses_access" {
           "ses:SendRawEmail",
           "ses:SendBulkEmail"
         ]
-        Resource = [module.ses[0].ses_identity_arn]
+        Resource = ["arn:aws:ses:${var.aws_region}:${data.aws_caller_identity.current.account_id}:identity/*"]
       }
     ]
   })
