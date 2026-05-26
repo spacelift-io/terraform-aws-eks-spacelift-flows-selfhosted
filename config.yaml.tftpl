@@ -13,14 +13,18 @@ ai:
 objectStorage:
   s3:
     bucket: "${s3_bucket_name}"
-    accessKeyId: "${s3_access_key_id}"
-    secretAccessKey: "${s3_secret_access_key}"
     endpoint: "${s3_endpoint}"
     region: "${s3_region}"
     insecure: ${s3_insecure}
 email:
   dev:
     enabled: ${email_dev_enabled}
+%{ if ses_enabled ~}
+  ses:
+    region: ${ses_region}
+    fromAddress: noreply@${app_domain}
+    fromName: Spacelift Flows
+%{ else ~}
 %{ if smtp_host != "" ~}
   smtp:
     host: "${smtp_host}"
@@ -30,6 +34,7 @@ email:
     fromAddress: "${smtp_from_address}"
     fromName: "${smtp_from_name}"
     encryption: "${smtp_encryption}"
+%{ endif ~}
 %{ endif ~}
 defaultAgentPool:
   id: "${default_agent_pool_id}"

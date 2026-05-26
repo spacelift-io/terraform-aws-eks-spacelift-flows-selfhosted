@@ -12,38 +12,6 @@ resource "aws_ses_domain_dkim" "flows" {
   domain = aws_ses_domain_identity.flows.domain
 }
 
-# IAM user for sending emails
-resource "aws_iam_user" "ses_user" {
-  name = "flows-ses-user"
-}
-
-resource "aws_iam_user_policy" "ses_user" {
-  name = "flows-ses-send-email"
-  user = aws_iam_user.ses_user.name
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "ses:SendEmail",
-          "ses:SendRawEmail"
-        ]
-        Resource = "*"
-        Condition = {
-          StringEquals = {
-            "ses:FromAddress" = "noreply@${var.domain}"
-          }
-        }
-      }
-    ]
-  })
-}
-
-resource "aws_iam_access_key" "ses_user" {
-  user = aws_iam_user.ses_user.name
-}
 
 # Email storage bucket (optional)
 resource "aws_s3_bucket" "emails" {

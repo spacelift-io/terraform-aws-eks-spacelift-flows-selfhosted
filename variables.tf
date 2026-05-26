@@ -19,6 +19,12 @@ variable "k8s_namespace" {
   default = "default"
 }
 
+variable "service_account_name" {
+  type        = string
+  description = "Name of the Kubernetes service account used by spacelift-flows. Used to scope the IRSA trust policy."
+  default     = "spacelift-flows"
+}
+
 variable "s3_retain_on_destroy" {
   type        = bool
   description = "Whether to retain the S3 buckets' contents when destroyed. If true, and the S3 bucket isn't empty, the deletion will fail."

@@ -8,18 +8,6 @@ output "storage_bucket_arn" {
   value       = aws_s3_bucket.flows_storage.arn
 }
 
-output "s3_access_key_id" {
-  description = "AWS access key ID for S3 user"
-  value       = aws_iam_access_key.s3_user.id
-  sensitive   = true
-}
-
-output "s3_secret_access_key" {
-  description = "AWS secret access key for S3 user"
-  value       = aws_iam_access_key.s3_user.secret
-  sensitive   = true
-}
-
 output "access_policies" {
   description = "IAM policy statements for bucket access"
   value = {
