@@ -117,6 +117,7 @@ output "eks_cluster_certificate_authority_data" {
 output "agent_pool_token" {
   description = "The token for the default agent pool"
   value       = random_password.default_agent_pool_token.result
+  sensitive   = true
 }
 
 output "agent_pool_id" {
