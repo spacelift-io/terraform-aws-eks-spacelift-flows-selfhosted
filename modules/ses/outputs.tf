@@ -1,23 +1,6 @@
-output "smtp_username" {
-  description = "SMTP username (AWS access key ID)"
-  value       = aws_iam_access_key.ses_user.id
-  sensitive   = true
-}
-
-output "smtp_password" {
-  description = "SMTP password (derived from secret access key)"
-  value       = aws_iam_access_key.ses_user.ses_smtp_password_v4
-  sensitive   = true
-}
-
-output "smtp_server" {
-  description = "SMTP server endpoint"
-  value       = "email-smtp.${data.aws_region.current.name}.amazonaws.com"
-}
-
-output "noreply_email" {
-  description = "The noreply email address"
-  value       = "noreply@${var.domain}"
+output "ses_identity_arn" {
+  description = "ARN of the SES domain identity"
+  value       = aws_ses_domain_identity.flows.arn
 }
 
 output "access_policies" {
@@ -30,7 +13,7 @@ output "access_policies" {
         "ses:SendRawEmail",
         "ses:SendBulkEmail"
       ]
-      Resource = ["*"]
+      Resource = [aws_ses_domain_identity.flows.arn]
     }
   }
 }

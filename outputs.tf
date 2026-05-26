@@ -21,19 +21,17 @@ output "config_secret_manifest" {
         opentelemetry_environment        = var.opentelemetry_environment
         anthropic_api_key                = var.anthropic_api_key
         s3_bucket_name                   = module.buckets.storage_bucket_name
-        s3_access_key_id                 = module.buckets.s3_access_key_id
-        s3_secret_access_key             = module.buckets.s3_secret_access_key
-        s3_endpoint                      = "s3.${var.aws_region}.amazonaws.com"
         s3_region                        = var.aws_region
-        s3_insecure                      = false
         email_dev_enabled                = var.email_dev_enabled
-        smtp_host                        = var.enable_ses ? module.ses[0].smtp_server : var.smtp_host
+        ses_enabled                      = var.enable_ses
+        ses_region                       = var.aws_region
+        smtp_host                        = var.smtp_host
         smtp_port                        = var.smtp_port
-        smtp_username                    = var.enable_ses ? module.ses[0].smtp_username : var.smtp_username
-        smtp_password                    = var.enable_ses ? module.ses[0].smtp_password : var.smtp_password
-        smtp_from_address                = var.enable_ses ? module.ses[0].noreply_email : var.smtp_from_address
+        smtp_username                    = var.smtp_username
+        smtp_password                    = var.smtp_password
+        smtp_from_address                = var.smtp_from_address
         smtp_from_name                   = var.smtp_from_name
-        smtp_encryption                  = var.enable_ses ? "starttls" : var.smtp_encryption
+        smtp_encryption                  = var.smtp_encryption
         default_agent_pool_id            = random_uuid.default_agent_pool_id.result
         default_agent_pool_token         = random_password.default_agent_pool_token.result
         organization_name                = var.organization_name
@@ -119,6 +117,7 @@ output "eks_cluster_certificate_authority_data" {
 output "agent_pool_token" {
   description = "The token for the default agent pool"
   value       = random_password.default_agent_pool_token.result
+  sensitive   = true
 }
 
 output "agent_pool_id" {
@@ -165,4 +164,9 @@ output "ecr_agent_repository_arn" {
 output "ecr_agent_repository_name" {
   description = "The name of the ECR repository for Agent images"
   value       = var.enable_ecr ? module.ecr[0].agent_repository_name : ""
+}
+
+output "flows_irsa_role_arn" {
+  description = "ARN of the IRSA IAM role for the spacelift-flows service account. Annotate the Kubernetes ServiceAccount with eks.amazonaws.com/role-arn: <this value>."
+  value       = var.enable_eks_cluster ? aws_iam_role.flows_irsa[0].arn : ""
 }
