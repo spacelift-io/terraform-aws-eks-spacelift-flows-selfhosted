@@ -21,9 +21,7 @@ output "config_secret_manifest" {
         opentelemetry_environment        = var.opentelemetry_environment
         anthropic_api_key                = var.anthropic_api_key
         s3_bucket_name                   = module.buckets.storage_bucket_name
-        s3_endpoint                      = "s3.${var.aws_region}.amazonaws.com"
         s3_region                        = var.aws_region
-        s3_insecure                      = false
         email_dev_enabled                = var.email_dev_enabled
         ses_enabled                      = var.enable_ses
         ses_region                       = var.aws_region
