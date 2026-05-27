@@ -93,7 +93,8 @@ output "shell" {
   value = templatefile("${path.module}/env.tftpl", {
     env : {
       # EKS
-      EKS_CLUSTER_NAME = local.cluster_name
+      EKS_CLUSTER_NAME    = local.cluster_name
+      FLOWS_IRSA_ROLE_ARN = var.enable_eks_cluster ? aws_iam_role.flows_irsa[0].arn : ""
     },
   })
 }
