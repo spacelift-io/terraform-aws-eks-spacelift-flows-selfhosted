@@ -259,3 +259,11 @@ variable "ecr_force_delete" {
   type        = bool
   default     = false
 }
+
+variable "spacelift_instances" {
+  description = "Optional map of Spacelift instances to make available to Flows, keyed by instance hostname. Each value may set api_url to override the instance's API endpoint, e.g. {\"example.app.spacelift.io\" = { api_url = \"https://api.example.com\" }}. Serialized to JSON in the generated config."
+  type = map(object({
+    api_url = optional(string)
+  }))
+  default = {}
+}
