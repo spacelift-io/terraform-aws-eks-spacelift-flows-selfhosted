@@ -40,6 +40,7 @@ output "config_secret_manifest" {
         server_port                      = var.server_port
         license_token                    = var.license_token
         additional_root_ca               = var.custom_ca_certificates
+        spacelift_instances              = local.spacelift_instances_json
       }))
     }
   })

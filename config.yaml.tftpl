@@ -50,3 +50,6 @@ server:
 %{ if additional_root_ca != "" ~}
 additionalRootCas: "${additional_root_ca}"
 %{ endif ~}
+%{ if spacelift_instances != "" ~}
+spaceliftInstances: ${spacelift_instances}
+%{ endif ~}
