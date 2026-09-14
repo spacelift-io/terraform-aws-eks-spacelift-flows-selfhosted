@@ -267,3 +267,10 @@ variable "spacelift_instances" {
   }))
   default = {}
 }
+
+variable "jwt_signing_key_pem" {
+  description = "PEM-encoded RSA private key used to sign JWTs issued by Flows. If null, a 2048-bit key is generated and stored in Terraform state."
+  type        = string
+  default     = null
+  sensitive   = true
+}

@@ -14,6 +14,9 @@ locals {
       for k, v in cfg : k => v if v != null
     }
   })) : ""
+
+  # Use the operator-provided signing key if set, otherwise the one generated below.
+  jwt_signing_key_pem = coalesce(var.jwt_signing_key_pem, tls_private_key.jwt_signing_key_pem.private_key_pem)
 }
 
 # Fetch availability zones
@@ -104,6 +107,12 @@ resource "random_password" "default_agent_pool_token" {
   length  = 64
   special = false
   upper   = false
+}
+
+# Signing key for JWTs issued by the Flows server.
+resource "tls_private_key" "jwt_signing_key_pem" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
 }
 
 

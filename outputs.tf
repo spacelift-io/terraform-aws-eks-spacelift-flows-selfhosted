@@ -41,6 +41,7 @@ output "config_secret_manifest" {
         license_token                    = var.license_token
         additional_root_ca               = var.custom_ca_certificates
         spacelift_instances              = local.spacelift_instances_json
+        jwt_signing_key_pem              = base64encode(local.jwt_signing_key_pem)
       }))
     }
   })
